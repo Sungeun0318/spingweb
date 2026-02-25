@@ -32,13 +32,50 @@ public class ServletController extends HttpServlet {
         super.service(req, resp);
     }
 
+    // 3. HTTP 메소드이란? GET, POST, PUT, DELETE으로 통신 방법
+    // 서블릿 객체는 요청이 끝나도 사라지지 않는다. 다음 요청에 재사용
+    // HttpServletRequest(요청정보), HttpServletResponse(응답정보) 객체는 요청이 끝나면 사라진다.
+    // 3-1 GET
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ServletController.doGet"); // soutm 현재 메소드 출력
+        String data = req.getParameter("data");
+        // * HTTP 요청시 포함된 매개변수 확인, http://localhost:8080/day02/servlet?data=아무값
+        System.out.println("data = " + data);
+        // * HTTP 요청시 클라이언트에게 응답
+        resp.getWriter().println("Client Response : Hi !!");
+    }
+
+    // 3-2 POST, 브라우저(크롬)의 주소입력창에 요청은 무조건 GET 방식이므로 POST, PUT, DELETE는 포스트맨 VS 탈렌드 API 사용
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ServletController.doPost");
+        String data = req.getParameter("data");
+        System.out.println("data = " + data);
+        resp.getWriter().println("Client Response : Hi !!");
+    }
+
+    // 3-3 PUT
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ServletController.doPut");
+        String data = req.getParameter("data");
+        System.out.println("data = " + data);
+        resp.getWriter().println("Client Response : Hi !!");
+    }
+
+    // 3-4 DELETE
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ServletController.doDelete");
+        String data = req.getParameter("data");
+        System.out.println("data = " + data);
+        resp.getWriter().println("Client Response : Hi !!");
+    }
+    // HTTP란? 클라이언트와 서버 간의 통신하는 규칙
+    // 클라이언트가 1번 요청의 1번 응답, 즉] 요청이 없으면 응답할 수 없다.
+    // 서블릿 클래스내 동일한 시그니처(선언부) 갖는 메소드는 존재할 수 없다.
+    // 즉] 하나의 서블릿에 doGet() 메소드는 1개만 존재할 수 있다. --> 스프링 환경에서 보완 제공
 
 
-
-
-
-
-
-
-
-}
+} // c e
