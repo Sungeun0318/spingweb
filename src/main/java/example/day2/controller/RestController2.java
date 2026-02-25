@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller // HTTP 기능 + 빈 등록
 public class RestController2 {
@@ -39,6 +38,28 @@ public class RestController2 {
         return map;
     }
 
+    // 4. boolean 타입 반환 하는 메소드
+    @GetMapping("/day02/task4")
+    @ResponseBody
+    public boolean method4(){
+        return true;
+    }
 
+    // 5. DTO 타입 반환 하는 메소드
+    @GetMapping("/day02/task5")
+    @ResponseBody
+    public TaskDto method5(){
+        TaskDto taskDto = new TaskDto();
+        taskDto.name = "유재석";
+        taskDto.point = 100;
+        return  taskDto;
+    }
+
+    // 즉] String 제외한 자바의 대부분 타입은 application/json 으로 HTTP Content-Type으로 설정된다.
 
 }
+
+class TaskDto{
+    String name;
+    int point;
+} // Dto
