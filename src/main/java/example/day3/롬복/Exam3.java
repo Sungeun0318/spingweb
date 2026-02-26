@@ -38,7 +38,7 @@ public class Exam3 {
 
 @NoArgsConstructor // 컴파일(코드번역될 때) 기본생성자 코드 자동 생성
 @AllArgsConstructor // 컴파일(코드번역될 때 ) 전체매개변수생성자 코드 자동 생성
-@RequiredArgsConstructor // final 매개변수 생성자 자동 생성
+// @RequiredArgsConstructor // final 매개변수 생성자 자동 생성
 @Getter // getter 메소드 제공
 @Setter // setter 메소드 제공
 @ToString // toString 메소드 제공
