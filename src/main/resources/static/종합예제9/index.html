@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <h3> 메인페이지 </h3>
+      <p>http://ip주소:WAS/(static)이하폴더 경로</p>
+      <p>http://localhost:8080/day02/%EC%A2%85%ED%95%A9%EC%98%88%EC%A0%9C9/index.html</p>
+      <div>
+          <h3> 입력 구역 </h3>
+          내용 : <input id="bcontent"/> <br/>
+          작성자 : <input id="bwriter"/> <br/>
+          <button onclick="func()"> 등록하기 </button>
+          <button onclick="func1()"> 조회하기 </button>
+      </div>
+      <div>
+          <h3> 출력구역 </h3>
+          <table id = "boardTable">
+              <thead>
+                    <tr>
+                        <th> 번호 </th>
+                        <th> 내용 </th>
+                        <th> 작성자 </th>
+                        <th> 작성일 </th>
+                        <th> 비고 </th>
+                    </tr>
+              </thead>
+              <tbody>
+                    <tr>
+                        <td> 1</td>
+                        <td> 안녕하세요 </td>
+                        <td> 유재석 </td>
+                        <td> 2026-02-27 </td>
+                        <td><button onclick="func3()"> 삭제 </button></td>
+                        <td><button onclick="func2()"> 내용수정 </button></td>
+                    </tr>
+              </tbody>
+          </table>
+      </div>
+
+
+
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="index.js"></script>
+
+</body>
+</html>
