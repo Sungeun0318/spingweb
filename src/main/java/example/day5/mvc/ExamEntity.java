@@ -16,7 +16,7 @@ public class ExamEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment 적용하겠다는 뜻
     private Integer eno;
 
-    @Column(name = "name", length = 255, nullable = true) // 테이블 필드 속성
+    @Column(name = "ename", length = 255, nullable = true) // 테이블 필드 속성
     private String ename;
 }
 // Entity 데이터베이스의 테이블과 객체 간 연동 객체
