@@ -21,12 +21,12 @@ public class MovieController {
 
     // 전체 조회
     @GetMapping
-    public List<MovieDto> getmovie() {
+    public List<MovieDto> getmovies() {
         List<MovieDto> result = movieService.getmovies();
         return  result;
     }
     // 개별 조회
-    @GetMapping
+    @GetMapping("/detail")
     public MovieDto getmovie(@RequestParam int movieid) {
         MovieDto result = movieService.getmovie(movieid);
         return result;
@@ -35,14 +35,14 @@ public class MovieController {
     // 수정
     @PutMapping
     public boolean updatemovie(@RequestBody MovieDto movieDto) {
-        boolean result = movieService.updateMovie(movieDto);
+        boolean result = movieService.updatemovie(movieDto);
         return result;
     }
 
     // 삭제
     @DeleteMapping
-    public boolean deletemovie(@RequestParam MovieDto movieDto) {
-        boolean result = movieService.deletemovie(movieDto);
+    public boolean deletemovie(@RequestParam int movieid) {
+        boolean result = movieService.deletemovie(movieid);
         return result;
     }
 

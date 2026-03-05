@@ -23,7 +23,7 @@ public class MovieEntity extends BaseTime{
     @Column
     private String director;
     @Column
-    private String releaseDate;
+    private String releasedate;
     @Column
     private String rating;
 
@@ -33,7 +33,7 @@ public class MovieEntity extends BaseTime{
                 .movieid(movieid)
                 .title(title)
                 .director(director)
-                .releaseDate(releaseDate)
+                .releasedate(releasedate)
                 .rating(rating)
                 .createDate(getCreateDate().toString())
                 .updateDate(getUpdateDate().toString())

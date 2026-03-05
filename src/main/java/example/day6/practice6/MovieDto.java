@@ -13,7 +13,7 @@ public class MovieDto {
     private Integer movieid;
     private String title;
     private String director;
-    private String releaseDate;
+    private String releasedate;
     private String rating;
 
     private String createDate;
@@ -25,7 +25,7 @@ public class MovieDto {
                 .movieid(movieid)
                 .title(title)
                 .director(director)
-                .releaseDate(releaseDate)
+                .releasedate(releasedate)
                 .rating(rating)
                 .build();
     }

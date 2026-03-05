@@ -44,7 +44,7 @@ public class MovieService {
     }
 
     // 수정
-    public boolean updateMovie(MovieDto movieDto) {
+    public boolean updatemovie(MovieDto movieDto) {
         int updatePk = movieDto.getMovieid();
         movieRepository.findById(updatePk);
         Optional<MovieEntity> optional = movieRepository.findById(updatePk);
@@ -52,15 +52,20 @@ public class MovieService {
             MovieEntity updateEntity = optional.get();
             updateEntity.setTitle(movieDto.getTitle());
             updateEntity.setDirector(movieDto.getDirector());
-            updateEntity.setReleaseDate(movieDto.getReleaseDate());
+            updateEntity.setReleasedate(movieDto.getReleasedate());
             updateEntity.setRating(movieDto.getRating());
         } else {
             return false;
         }
         return true;
-
-        // 삭제
-
-
+    }
+    // 삭제
+    public boolean deletemovie(int movieid) {
+        Optional<MovieEntity> movieEntity = movieRepository.findById(movieid);
+        if (movieEntity.isPresent()) {
+            movieRepository.deleteById(movieid);
+            return true;
+        }
+        return false;
     }
 }
