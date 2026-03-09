@@ -5,7 +5,28 @@
     <title>Title</title>
 </head>
 <body>
-    <h3>종합예제10</h3>
-
+<h3> 종합예제10 </h3>
+<h3> 게시판 현황 </h3>
+<a href="/종합예제10/write.html"> 글쓰기 </a>
+<table>
+    <thead>
+    <tr>
+        <th> 번호</th>
+        <th> 제목</th>
+        <th> 작성자</th>
+        <th> 작성일</th>
+    </tr>
+    </thead>
+    <tbody id="boardTable">
+    <tr>
+        <td> 1</td>
+        <td><a href="/종합예제10/detail.html"> 제목1 </a></td>
+        <td> 내용1</td>
+        <th> 2026-03-26</th>
+    </tr>
+    </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- axios -->
+<script src="index.js"></script>
 </body>
 </html>

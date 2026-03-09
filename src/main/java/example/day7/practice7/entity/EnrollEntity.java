@@ -1,4 +1,4 @@
-package example.day7.practice7;
+package example.day7.practice7.entity;
 
 
 import jakarta.persistence.*;

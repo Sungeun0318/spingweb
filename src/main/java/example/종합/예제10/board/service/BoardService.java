@@ -73,8 +73,8 @@ public class BoardService {
 
     // 게시물 개별 삭제
     public boolean 개별삭제(int bno){
-        Optional<BoardEntity> boardEntity = boardRepository.findById(bno);
-        if (boardEntity.isPresent()) {
+        boolean exist = boardRepository.existsById(bno);
+        if (exist) {
             boardRepository.deleteById(bno);
             return true;
         }
