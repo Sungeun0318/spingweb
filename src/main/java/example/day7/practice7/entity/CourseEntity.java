@@ -12,14 +12,15 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "course")
-public class CourseEntity {
+public class CourseEntity extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseId;
     private String courseName;
 
-    @OneToMany(mappedBy = "courseEntity")
+    @OneToMany(mappedBy = "course")
     @ToString.Exclude
     @Builder.Default
     private List<EnrollEntity> enrollEntityList =  new ArrayList<>();
+
 }
