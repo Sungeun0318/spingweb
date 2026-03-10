@@ -18,7 +18,7 @@ public class StudentService {
     public boolean postStudent(StudentDto studentDto) {
         StudentEntity saveEntity = studentDto.toEntity();
         StudentEntity studentEntity = studentRepository.save(saveEntity);
-        if (studentEntity.getStudentId() >= 1) {
+        if (studentEntity.getSid() >= 1) {
             return true;
         }
         return false;

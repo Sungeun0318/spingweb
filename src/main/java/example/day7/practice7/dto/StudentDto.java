@@ -13,7 +13,7 @@ public class StudentDto {
 
     public StudentEntity toEntity() {
         return StudentEntity.builder()
-                .studentName(studentname)
+                .sname(studentname)
                 .build();
     }
 }

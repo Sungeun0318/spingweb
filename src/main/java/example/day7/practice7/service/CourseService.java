@@ -17,7 +17,7 @@ public class CourseService {
     public boolean postCourse(CourseDto courseDto) {
         CourseEntity saveCourseEntity = courseDto.toEntity();
         CourseEntity courseEntity = courseRepository.save(saveCourseEntity);
-        if (courseEntity.getCourseId() >= 1) {
+        if (courseEntity.getCid() >= 1) {
             return true;
         }
         return false;

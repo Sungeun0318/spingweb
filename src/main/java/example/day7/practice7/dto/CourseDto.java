@@ -10,10 +10,12 @@ import lombok.*;
 public class CourseDto {
     private Integer courseid;
     private String coursename;
+    private String createdAt;
+    private String updatedAt;
 
     public CourseEntity toEntity() {
         return CourseEntity.builder()
-                .courseName(coursename)
+                .cname(coursename)
                 .build();
     }
 }

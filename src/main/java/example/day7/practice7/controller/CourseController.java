@@ -17,6 +17,7 @@ public class CourseController {
 
     @PostMapping
     public boolean postCourse(@RequestBody CourseDto courseDto) {
+
         return courseService.postCourse(courseDto);
     }
 }
