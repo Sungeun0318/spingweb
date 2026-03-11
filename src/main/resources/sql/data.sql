@@ -1,5 +1,5 @@
 -- day8 todo sample insert --
-INSERT INTO todo (title, content, done, create_date, update_date)
+INSERT INTO todo (title, content, done, created_date, updated_date)
 VALUES ("자바공부하기", "chapter4 마스터", false, NOW(), NOW()),
        ("스프링 부트 실습", "REST API CRUD 구현하기", false, NOW(), NOW()),
        ("알고리즘 풀기", "백준 실버 2문제 풀기", true, NOW(), NOW()),

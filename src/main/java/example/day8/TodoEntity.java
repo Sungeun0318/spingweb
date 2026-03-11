@@ -19,6 +19,6 @@ public class TodoEntity extends BaseTime {
 
     private String title;
     private String content;
-    private String done;
+    private Boolean done;
 
 }
