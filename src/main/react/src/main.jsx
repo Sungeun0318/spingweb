@@ -7,9 +7,17 @@ import App from './App.jsx'
 // ** index.html 에서 root 가져오기 **
 const root = document.querySelector('#root'); 
 
-// chapter 7 예제
-import Exam1 from './chapter7/Exam1.jsx';
-createRoot(root).render(<Exam1/>);
+// chapter 9예제
+import Exam2 from './chapter9/Exam2.jsx';
+createRoot(root).render(<Exam2/>);
+
+// chapter 8예제
+// import Exam1 from './chapter8/Exam1.jsx';
+// createRoot(root).render(<Exam1/>);
+
+// // chapter 7 예제
+// import Exam1 from './chapter7/Exam1.jsx';
+// createRoot(root).render(<Exam1/>);
 
 // chapter 6 예제
 // import Exam1 from './chapter6/Exam1.jsx';
