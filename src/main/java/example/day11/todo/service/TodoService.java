@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,6 +52,26 @@ public class TodoService {
         return entity1.toDto();
     }
 
+    // 4. title과 content 개별 조회
+    public Map<String, Object> query2(String title, String content){
+        // 2-2] 쿼리 메소드 호출
+        Map<String, Object> result = todoRepository.findByTitleAndContent(title, content);
+        System.out.println("result = " + result.toString());
+        // 3-2] 네이티브 메소드 호출
+        return todoRepository.query2(title, content);
+    }
+
+    // 5. title이 포함된 개별 조회
+    public List<TodoDto> query3(String title){
+        // 2-3]
+        // List<TodoEntity> entityList = todoRepository.findByTitleContaining(title);
+        // 3-3]
+        List<TodoEntity> entityList1 = todoRepository.query3(title);
+        return entityList1
+                .stream() // 스트림 시작
+                .map(TodoEntity::toDto) // 중간연산, 메소드레퍼런스API, 엔티티 --> dto 변환
+                .collect(Collectors.toList()); // 최종출력은 List 타입
+    }
 
 
 

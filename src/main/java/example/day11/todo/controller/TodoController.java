@@ -1,7 +1,6 @@
 package example.day11.todo.controller;
 
 import example.day11.todo.dto.TodoDto;
-import example.day11.todo.repository.TodoRepository;
 import example.day11.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,6 +37,20 @@ public class TodoController {
     public ResponseEntity<?> query1(@RequestParam String title){
         TodoDto result = todoService.query1(title);
         return ResponseEntity.ok(result);
+    }
+
+    // 4. title과 content 개별 조회
+    @GetMapping("/query2") // http://localhost:8080/api/todo/query1?title=자바 공부&content=JPA 기본 개념 정리
+    public ResponseEntity<?> query2(@RequestParam String title, @RequestParam String content){
+        Map<String, Object> result = todoService.query2(title, content);
+        return ResponseEntity.status(200).body(result);
+    }
+
+    // 5. title이 포함된 개별 조회
+    @GetMapping("query3")
+    public ResponseEntity<?> query3(@RequestParam String title){
+        List<TodoDto> result = todoService.query3(title);
+        return ResponseEntity.status(200).body(result);
     }
 
 }

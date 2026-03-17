@@ -3,7 +3,11 @@ package example.day11.todo.repository;
 import example.day11.todo.entity.TodoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 @Repository
 
@@ -16,10 +20,26 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Integer> {
         // 2-1 : title으로 조회, 엔티티타입명 findBy필드명(타입 매개변수);
      TodoEntity findByTitle(String title); // 추상메소드란? {} 구현부가 없는 메소드
 
+        // 2-2 : title 과 content 일치조회, 엔티티/MAP findBy필드명And필드명(타입 매개변수, 타입 매개변수);
+    Map<String, Object> findByTitleAndContent(String title, String content);
+
+        // 2-3 : title이 포함된 조회, findBy필드명Containing()
+    List<TodoEntity> findByTitleContaining(String title);
+
+
     // 3] 네이티브 메소드
         // 3-1 : 연동된 데이터베이스 쿼리 사용 가능하다.
     @Query(value = "select * from todo where title = :title", nativeQuery = true)
     TodoEntity query1(String title);
+
+        // 3-2 :
+    @Query(value = "select * from todo where title = :title and content = :content", nativeQuery = true)
+    Map<String, Object> query2(String title, String content);
+
+        // 3-3
+    @Query(value = "select * from todo where title like %:title%", nativeQuery = true)
+    List<TodoEntity> query3(String title);
+
 
 
     // 4] JPQL
