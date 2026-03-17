@@ -25,6 +25,20 @@ public class TodoController {
         return ResponseEntity.status(200).body(result);
     }
 
+    // 2. 개별조회
+    @GetMapping("/detail")
+    public ResponseEntity<?> findById(@RequestParam int id){
+        TodoDto result = todoService.findById(id);
+        return ResponseEntity.status(200).body(result);
+    }
+
+    // 3. title 개별조회
+    @GetMapping("/query1") //http://localhost:8080/api/todo/query1?title=자바 공부
+    public ResponseEntity<?> query1(@RequestParam String title){
+        TodoDto result = todoService.query1(title);
+        return ResponseEntity.ok(result);
+    }
+
 }
 
 // ResponseEntity : 응답객체, 사용목적 : 반환값 외 추가적인 자료 포함 <응답코드>

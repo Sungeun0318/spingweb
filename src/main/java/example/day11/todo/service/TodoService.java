@@ -7,7 +7,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +28,32 @@ public class TodoService {
                 // 클래스명 :: 메소드명
                 .collect(Collectors.toList()); // 최종출력, List 타입
         return list4;
+    }
+
+    // 2. 개별 조회
+    public TodoDto findById(int id){
+        // 방법 2]
+        TodoDto todoDto = todoRepository.findById(id)
+                // 스트림(데이터들) 사용하지 않고 Optional에서 map 메소드 지원
+                .map(TodoEntity :: toDto) // 중간 연산
+                .orElse(null); // 만약에 조회 결과 없으면 null 반환
+        return todoDto;
 
     }
+
+    // 3. title 개별조회
+    public TodoDto query1(String title){
+        // * findById 밖에 없으므로 리포지토리에서 findByIdTitle 만들자.
+        // 2-1] 쿼리 메소드 호출
+        TodoEntity entity = todoRepository.findByTitle(title);
+        // 3-1] 네이티브 쿼리 호출
+        TodoEntity entity1 = todoRepository.query1(title);
+        return entity1.toDto();
+    }
+
+
+
+
 }
 //      ==== 4가지 방법 1번 방법을 알고 있어야 아래 방법들 활용가능 꼭 알아둘 것 ====
 //            // 방법1]
@@ -55,3 +78,17 @@ public class TodoService {
 //                .map(TodoEntity :: toDto) // 중간연산, 람다식 대신에 메소드 레퍼런스API(미리 정의된 메소드)
 //                // 클래스명 :: 메소드명
 //                .collect(Collectors.toList());
+
+
+// 방법 1]
+//Optional<TodoEntity> optional = todoRepository.findById(id);
+//        if(optional.isPresent()){
+//TodoDto todoDto = optional.get().toDto();
+//        }
+//
+// 방법 2]
+//TodoDto todoDto = todoRepository.findById(id)
+//        // 스트림(데이터들) 사용하지 않고 Optional에서 map 메소드 지원
+//        .map(TodoEntity :: toDto) // 중간 연산
+//        .orElse(null); // 만약에 조회 실패하면 null 반환
+//        return todoDto.toEntity();
