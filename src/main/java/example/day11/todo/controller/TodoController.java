@@ -53,6 +53,21 @@ public class TodoController {
         return ResponseEntity.status(200).body(result);
     }
 
+    // 6. 페이징처리
+    @GetMapping("/page") // http://localhost:8080/api/todo/page?page=1&size=3
+    // page는 조회할 현재 페이지 번호 뜻
+    // size는 페이지당 조회할 엔티티 개수
+    public ResponseEntity<?> page(@RequestParam int page,  @RequestParam int size){
+        return ResponseEntity.ok(todoService.page(page, size));
+    }
+
+    // 7. 페이징처리2
+    @GetMapping("/page2") // http://localhost:8080/api/todo/page2?keyword=공&page=1&size=3
+    public ResponseEntity<?> page2(@RequestParam String keyword,  @RequestParam(defaultValue = "1") int page,  @RequestParam(defaultValue = "3") int size){
+        // defaultValue는 쿼리스트링 값이 존재하지 않으면 초기값
+        return ResponseEntity.ok(todoService.page2(keyword, page, size));
+    }
+
 }
 
 // ResponseEntity : 응답객체, 사용목적 : 반환값 외 추가적인 자료 포함 <응답코드>
