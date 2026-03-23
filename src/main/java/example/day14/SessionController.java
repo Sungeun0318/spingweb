@@ -4,10 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,8 +34,46 @@ public class SessionController {
     }
 
     // [2] 세션객체 내 값 호출 = 로그인의 회원정보(마이페이지)
+    @GetMapping("")
+    public ResponseEntity<?> test2(HttpServletRequest request) {
+        System.out.println(request.getHeader("User-Agent"));
+        // 1) 세션객체 반환
+        HttpSession session = request.getSession();
+        // 2) 세션객체내 특정한 속성 반환 *모든 값은 Object 반환된다.*
+        Object obj = session.getAttribute("data");
+        // 3) 유효성검사, 있으면 로그인중, 없으면 비로그인
+        if(obj == null){
+            System.out.println("[상태없음]");
+            return ResponseEntity.ok(false); // * 서버 재실행하면 모든 세션정보는 초기화/사라진다.
+        }else {
+            String data = (String)obj;
+            System.out.println("[상태있음]" + data);
+            return ResponseEntity.ok(true);
+        }
+    }
 
-    // [3] 세션객체 내 값 제거 = 로그아웃
+    // [3] 세션객체 내 속성 제거 = 로그아웃
+    @DeleteMapping("")
+    public ResponseEntity<?> test3(HttpSession session) { // 매개변수로 HttpSession 받는다.
+        // 방법 1) 속성 전체 초기화
+        // session.invalidate(); // 세션객체내 모든 속성 제거
+        // 방법 2) 특정 속성 초기화
+        session.removeAttribute("data");
+
+        return ResponseEntity.ok(true);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
@@ -56,6 +91,14 @@ public class SessionController {
             1) .getRemoteAddr() : 요청한 클라이언트의 IP 반환
             2) .getHeader()     : 요청한 클라이언트의 브라우저 정보 반환
             3) .getSession()    : 요청한 클라이언트의 세션 객체 반환 *브라우저 마다*
+
+    HttpSession
+        1. 세션 : 메모리가 저장되는 구역
+        2. 톰캣 세션 : HTTP 객체내 제공 받는 메모리 구역
+        3. 주요 메소드
+            1) .setAttribute("속성명", 값);   : 세션 객체내 속성명과 속성값 저장, 주로 로그인 상태/정보
+            2) .getAttribute("속성명");      : 세션 객체내 속성명 이용한 속성값 호출, *Object반환*
+            3)
 
 */
 
