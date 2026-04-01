@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 import springweb.board.entity.BoardEntity;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,6 +27,9 @@ public class BoardDto {
     // + BaseTime 멤버변수
     private String createDate;
     private String updateDate;
+
+    // + 첨부파일 매핑, 여러 개 : List<MultipartFile>
+    private MultipartFile uploadFile;
 
     // + toEntity
     public BoardEntity toEntity(){
