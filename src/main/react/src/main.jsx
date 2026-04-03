@@ -7,13 +7,30 @@ import './index.css'
 // ** index.html 에서 root 가져오기 **
 const root = document.querySelector('#root');
 
-// chapter 12예제
-import App from './chapter12/App';
+// reactweb
+import App from './reactweb/App';
 import { BrowserRouter } from 'react-router-dom';
 createRoot(root).render(
     <BrowserRouter>
         <App />
     </BrowserRouter>);
+
+// practice1
+// import App from './practice1/App';
+// import { BrowserRouter } from 'react-router-dom';
+// createRoot(root).render(
+//     <BrowserRouter>
+//         <App />
+//     </BrowserRouter>);
+
+
+// chapter 12예제
+// import App from './chapter12/App';
+// import { BrowserRouter } from 'react-router-dom';
+// createRoot(root).render(
+//     <BrowserRouter>
+//         <App />
+//     </BrowserRouter>);
 
 
 // chapter 11예제
