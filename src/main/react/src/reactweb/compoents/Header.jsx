@@ -14,13 +14,15 @@ export default function Header(props) {
     // [1] 로그인 상태에 따라 상단메뉴 분기
     const getMyInfo = async () => {
         // 1) 로그인시 localStorage 저장한 token 가져오기, .setItem, .getItem
-        const token = localStorage.getItem('token');
+        // const token = localStorage.getItem('token');
         // 2) 만약에 token이 없으면 함수 종료, 로그인 상태
-        if (!token) { setLogin(false); return; }
+        // if (!token) { setLogin(false); return; }
         // 3) 헤더에 표시할 로그인된 유저 아이디 가져오기
         const response = await axios.get(
-            'http://localhost:8080/api/member2/my/info', // 통신할 (스프링 컨트롤러 매핑) 주소
-            { headers: { Authorization: `Bearer ${token}` } } // {headers : {속성명 : 값 }}
+            'http://localhost:8080/api/member3/my/info', // 통신할 (스프링 컨트롤러 매핑) 주소
+            {withCredentials : true} // 쿠키(+토큰포함) 전송으로 변경
+
+        //    { headers: { Authorization: `Bearer ${token}` } } // {headers : {속성명 : 값 }}
             // * axios 특징 : Content - Type : application/json 기본값
             // 만약에 Content = Type이 json 아닌 경우 명시한다.
         );
@@ -38,10 +40,17 @@ export default function Header(props) {
     useEffect(() => { getMyInfo(); }, [])
 
     // [5] 로그아웃
-    const logout = () => {
-        // 1) localStorage에서 token 제거, .removeItem()
-        localStorage.removeItem('token');
-        // 2) 로그인 상태변경
+    const logout = async() => {
+
+        // 1) axios
+        const response = await axios.get("http://localhost:8080/api/member3/logout", // 통신할 서버의 경로(controller 매핑 주소)
+            {withCredentials : true} // 쿠키(+토큰) 전송
+        );
+
+        // // 1) localStorage에서 token 제거, .removeItem()
+        // localStorage.removeItem('token');
+
+        // 2) 로그인 상태변경, 안내후 페이지 변경
         setLogin(false);
         // 3)
         alert('로그아웃');
@@ -64,7 +73,7 @@ export default function Header(props) {
 
             {/* 로그인 메뉴 */}
             {login && (<>
-                <span> {user.mid}님</span> |
+                <span> {user.mname}님</span> |
                 <Link to="/member/page">내정보</Link> |
                 <Link to="/board/write">글쓰기</Link> |
                 <button onClick={logout}>로그아웃</button>|
