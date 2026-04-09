@@ -64,19 +64,20 @@ export default function Header(props) {
         <div>
             {/* 로그인 상태에 따른 메뉴 분기 */}
             <Link to='/'>홈</Link> |
+            <Link to="/board"> 게시물</Link> |
 
             {/* 비로그인 메뉴 */}
             {!login && (<>
                 <Link to="/member/login">로그인</Link> |
-                <Link to="/member/signup">회원가입</Link> |
+                <Link to="/member/signup"> 회원가입</Link> |
             </>)}
 
             {/* 로그인 메뉴 */}
             {login && (<>
                 <span> {user.mname}님</span> |
-                <Link to="/member/page">내정보</Link> |
-                <Link to="/board/write">글쓰기</Link> |
-                <button onClick={logout}>로그아웃</button>|
+                <Link to="/member/page"> 내정보</Link> |
+                <Link to="/board/write"> 글쓰기</Link> |
+                <button onClick={logout}> 로그아웃</button>|
 
             </>)}
             <br />
